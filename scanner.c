@@ -176,9 +176,7 @@ static Token string(Scanner* scanner) {
 }
 
 static Token identifier(Scanner* scanner) {
-    char next = peek(scanner);
-
-    while (is_alpha(next) || is_digit(next)) advance(scanner);
+    while (is_alpha(peek(scanner)) || is_digit(peek(scanner))) advance(scanner);
 
     return make_token(scanner, identifier_type(scanner));
 }
