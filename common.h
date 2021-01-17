@@ -9,4 +9,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#define DEBUG_TRACE_EXECUTION
+
 #endif //LOX_COMMON_H
