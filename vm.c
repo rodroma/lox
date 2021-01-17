@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "vm.h"
 #include "debug.h"
+#include "compiler.h"
 
 // Forward declarations
 
@@ -21,10 +22,9 @@ void free_vm(VM* vm) {
 
 }
 
-InterpreterResult interpret(VM* vm, Chunk* chunk) {
-    vm->chunk = chunk;
-    vm->ip = chunk->code;
-    return run(vm);
+InterpreterResult interpret(VM* vm, const char* source) {
+    compile(vm, source);
+    return INTERPRET_OK;
 }
 
 void push(VM* vm, Value value) {
