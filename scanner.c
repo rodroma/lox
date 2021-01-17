@@ -10,7 +10,6 @@
 // Forward declarations
 
 static bool is_at_end(Scanner*);
-static char advance(Scanner*);
 static bool match(Scanner*, char expected);
 static void skip_whitespace(Scanner*);
 static char peek(Scanner*);
@@ -26,6 +25,8 @@ static TokenType identifier_type(Scanner*);
 static Token string(Scanner*);
 static Token number(Scanner*);
 static Token identifier(Scanner*);
+
+static char advance(Scanner* scanner);
 
 // Public
 
@@ -71,6 +72,11 @@ Token scan_token(Scanner* scanner) {
     return error_token(scanner, "Unexpected character");
 }
 
+static char advance(Scanner* scanner) {
+    scanner->current += 1;
+    return scanner->current[-1];
+}
+
 // Private
 
 static bool is_at_end(Scanner* scanner) {
@@ -97,11 +103,6 @@ static Token error_token(Scanner* scanner, const char* message) {
     };
 
     return token;
-}
-
-static char advance(Scanner* scanner) {
-    scanner->current += 1;
-    return scanner->current[-1];
 }
 
 static bool match(Scanner* scanner, char expected) {
